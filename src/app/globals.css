@@ -1,0 +1,258 @@
+@import 'react-toastify/dist/ReactToastify.css';
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 90%; /* Set a smaller width for the image */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 8px; /* Match your design */
+}
+
+.magnifier {
+  position: absolute;
+  border: 3px solid #fff; /* Border color of the magnifier */
+  border-radius: 50%;
+  cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD+E9XbAAAAOElEQVR42mP8//8/AzSg9QKICBAc8IDJwBFAwEAAAAAAADgAIZyLg5hAAAAAElFTkSuQmCC') 10 10, auto; /* Custom + icon cursor */
+  width: 50px; /* Size of the magnifier */
+  height: 50px; /* Size of the magnifier */
+  pointer-events: none; /* Prevent mouse events on the magnifier itself */
+  display: none; /* Hide by default */
+  transform: translate(-50%, -50%); /* Center the magnifier */
+  background: rgba(255, 255, 255, 0.5); /* Background color of magnifier */
+  z-index: 10; /* Ensure it's above other elements */
+}
+
+.zoomed-image {
+  position: absolute;
+  border: none;
+  transform: scale(2); /* Adjust zoom level */
+  pointer-events: none; /* Prevent mouse events on the zoomed image */
+  display: none; /* Hide by default */
+}
+
+.product-container {
+  display: flex; /* Use flexbox for side-by-side layout */
+  justify-content: space-between; /* Space between image and description */
+  max-width: 100%; /* Set to 100% to prevent scrolling */
+  margin: 0 auto; /* Center the container */
+  padding: 1rem; /* Add some padding */
+  box-sizing: border-box; /* Include padding in width calculations */
+}
+
+.image-section {
+  flex: 0 0 45%; /* Fixed width to ensure it fits nicely */
+  margin-right: 1rem; /* Space between image and description */
+}
+
+.description-section {
+  flex: 0 0 50%; /* Fixed width to ensure it fits nicely */
+}
+
+@media (max-width: 768px) {
+  .image-section, .description-section {
+    flex: 1; /* Stack on smaller screens */
+    margin-right: 0; /* Remove right margin on smaller screens */
+  }
+}
+
+
+
+
+/* Example global styles for smoother transitions and shadows */
+body {
+  background-color: #f9fafb; /* Light background for a clean look */
+}
+
+.header, .footer, .banner, .carousel, .newsletter {
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.carousel {
+  transition: transform 0.3s ease; /* Smooth transition for the carousel */
+}
+
+.carousel img {
+  border-radius: 12px; /* Rounded image corners */
+}
+
+
+
+/* Other global styles */
+
+#Hero {
+  background-image: url("/banner2.webp");
+  height: 90vh;
+  width: 100%;
+  background-size: cover;
+  background-position: top 25% right 0;
+  padding: 0 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+} */
+
+#Hero h4 {
+  padding-bottom: 15px;
+}
+
+#Hero h1 {
+  color: #08815f;
+}
+
+#Hero button {
+  background-image: url("/button.png");
+  background-color: transparent;
+  color: #08815f;
+  border: 0;
+  padding: 14px 90px 15px 65px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+
+/* Loader */
+
+
+/* styles/globals.css */
+
+.boxes {
+  --size: 32px;
+  --duration: 800ms;
+  height: calc(var(--size) * 2);
+  width: calc(var(--size) * 3);
+  position: relative;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  margin-top: calc(var(--size) * 1.5 * -1);
+  transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg) translateZ(0px);
+}
+
+.boxes .box {
+  width: var(--size);
+  height: var(--size);
+  top: 0;
+  left: 0;
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.boxes .box:nth-child(1) {
+  transform: translate(100%, 0);
+  animation: box1 var(--duration) linear infinite;
+}
+
+.boxes .box:nth-child(2) {
+  transform: translate(0, 100%);
+  animation: box2 var(--duration) linear infinite;
+}
+
+.boxes .box:nth-child(3) {
+  transform: translate(100%, 100%);
+  animation: box3 var(--duration) linear infinite;
+}
+
+.boxes .box:nth-child(4) {
+  transform: translate(200%, 0);
+  animation: box4 var(--duration) linear infinite;
+}
+
+.boxes .box > div {
+  --background: #5C8DF6;
+  --top: auto;
+  --right: auto;
+  --bottom: auto;
+  --left: auto;
+  --translateZ: calc(var(--size) / 2);
+  --rotateY: 0deg;
+  --rotateX: 0deg;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--background);
+  top: var(--top);
+  right: var(--right);
+  bottom: var(--bottom);
+  left: var(--left);
+  transform: rotateY(var(--rotateY)) rotateX(var(--rotateX)) translateZ(var(--translateZ));
+}
+
+.boxes .box > div:nth-child(1) {
+  --top: 0;
+  --left: 0;
+}
+
+.boxes .box > div:nth-child(2) {
+  --background: #145af2;
+  --right: 0;
+  --rotateY: 90deg;
+}
+
+.boxes .box > div:nth-child(3) {
+  --background: #447cf5;
+  --rotateX: -90deg;
+}
+
+.boxes .box > div:nth-child(4) {
+  --background: #DBE3F4;
+  --top: 0;
+  --left: 0;
+  --translateZ: calc(var(--size) * 3 * -1);
+}
+
+@keyframes box1 {
+  0%, 50% {
+      transform: translate(100%, 0);
+  }
+  100% {
+      transform: translate(200%, 0);
+  }
+}
+
+@keyframes box2 {
+  0% {
+      transform: translate(0, 100%);
+  }
+  50% {
+      transform: translate(0, 0);
+  }
+  100% {
+      transform: translate(100%, 0);
+  }
+}
+
+@keyframes box3 {
+  0%, 50% {
+      transform: translate(100%, 100%);
+  }
+  100% {
+      transform: translate(0, 100%);
+  }
+}
+
+@keyframes box4 {
+  0% {
+      transform: translate(200%, 0);
+  }
+  50% {
+      transform: translate(200%, 100%);
+  }
+  100% {
+      transform: translate(100%, 100%);
+  }
+}
+
+
+
